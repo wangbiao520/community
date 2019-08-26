@@ -1,0 +1,12 @@
+2019-08-26 01:08:23.636  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule start Mon Aug 26 01:08:23 CST 2019
+2019-08-26 01:08:23.647  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule stop Mon Aug 26 01:08:23 CST 2019
+2019-08-26 04:08:23.635  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule start Mon Aug 26 04:08:23 CST 2019
+2019-08-26 04:08:23.636  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule stop Mon Aug 26 04:08:23 CST 2019
+2019-08-26 07:08:23.636  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule start Mon Aug 26 07:08:23 CST 2019
+2019-08-26 07:08:23.643  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule stop Mon Aug 26 07:08:23 CST 2019
+2019-08-26 10:08:23.636  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule start Mon Aug 26 10:08:23 CST 2019
+2019-08-26 10:08:23.637  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule stop Mon Aug 26 10:08:23 CST 2019
+2019-08-26 13:08:23.635  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule start Mon Aug 26 13:08:23 CST 2019
+2019-08-26 13:08:23.645  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule stop Mon Aug 26 13:08:23 CST 2019
+2019-08-26 16:08:23.636  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule start Mon Aug 26 16:08:23 CST 2019
+2019-08-26 16:08:23.647  INFO 19272 --- [scheduling-1] l.m.community.schedule.HotTagTasks       : hotTagSchedule stop Mon Aug 26 16:08:23 CST 2019
