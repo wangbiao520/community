@@ -31,19 +31,7 @@ public class IndexController {
                         @RequestParam(value = "size",defaultValue = "2") Integer size,
                         Model model){
 
-        Cookie[] cookies = request.getCookies();
-        User user = null;
-        if(cookies != null){
-            for (Cookie cookie: cookies) {
-                if("token".equals(cookie.getName())){
-                    user = userMapper.selectByToken(cookie.getValue());
-                    if(user !=null){
-                        request.getSession().setAttribute("user",user);
-                    }
-                    break;
-                }
-            }
-        }
+
         PageQuestionDTO pageQuestionDTO = questionService.findList(page,size);
         model.addAttribute("page",pageQuestionDTO);
 

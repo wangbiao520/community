@@ -19,4 +19,10 @@ public interface QuestionMapper {
     List<Question> findPage(@Param(value = "firstPage") Integer firstPage, @Param(value = "size")Integer size);
     @Select("select count(1) from question")
     Integer count();
+
+    @Select("select count(1) from question where creator = #{id}")
+    Integer countByUserId(@Param(value = "id") Long id);
+
+    @Select("select * from question where creator = #{id} limit #{firstPage},#{size}")
+    List<Question> findPageByUserId(@Param(value = "id")Long id, @Param(value = "firstPage") Integer firstPage, @Param(value = "size")Integer size);
 }
