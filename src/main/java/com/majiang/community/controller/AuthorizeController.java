@@ -2,9 +2,9 @@ package com.majiang.community.controller;
 
 import com.majiang.community.dto.AccessTokenDTO;
 import com.majiang.community.dto.GitHubUser;
-import com.majiang.community.mapper.UserMapper;
 import com.majiang.community.model.User;
 import com.majiang.community.provider.GitHubProvider;
+import com.majiang.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class AuthorizeController {
     private GitHubProvider gitHubProvider;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @Value("${github.client.id}")
     private String clientId;
@@ -47,7 +47,6 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         GitHubUser gitHubUser = gitHubProvider.getUser(accessToken);
-        System.out.println(gitHubUser.getName());
 
         if(gitHubUser != null){
             //登录成功 存入session
@@ -61,12 +60,24 @@ public class AuthorizeController {
             user.setAvatarUrl(gitHubUser.getAvatarUrl());
             response.addCookie(new Cookie("token",token));
 
-            userMapper.insert(user);
+            userService.createOrUpdate(user);
             return "redirect:";
         }else{
             return "redirect:";
         }
 
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                           HttpServletResponse response){
+
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return "redirect:";
     }
 
 }
