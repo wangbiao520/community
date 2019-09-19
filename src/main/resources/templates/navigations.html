@@ -34,7 +34,7 @@
                     <li th:if="${session.user != null}"><a href="/publish">发布</a></li>
 
                     <li th:if="${session.user != null}"><a href="/profile/repies">通知<span class="badge" th:text="${session.unreadCount}" th:if="${session.unreadCount != null && session.unreadCount != 0}"> </span></a></li>
-                    <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=1cac5f8fd3854fe3fd1a&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a></li>
+                    <li th:if="${session.user == null}"><a th:href="@{https://github.com/login/oauth/authorize(client_id='2859958f9f059979ed3a',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}"></a></li>
                     <li th:if="${session.user != null}" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
                         <ul class="dropdown-menu">

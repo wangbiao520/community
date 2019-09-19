@@ -5,6 +5,7 @@ import com.majiang.community.model.User;
 import com.majiang.community.model.UserExample;
 import com.majiang.community.service.InformService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,10 +24,13 @@ public class SessionInterceptor implements HandlerInterceptor {
     private UserMapper userMapper;
     @Autowired
     private InformService informService;
+    @Value("${github.redirect.uri}")
+    private String redirect;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        request.getServletContext().setAttribute("redirect",redirect);
         Cookie[] cookies = request.getCookies();
         User user = null;
         if(cookies != null){
