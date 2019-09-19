@@ -17,19 +17,16 @@ function comment2target(targetId,type,content) {
             "content":content
         }),
         success: function (response) {
-            console.log(response);
             if(response.code == 200){
                 window.location.reload();
             }else{
                 if(response.code == 2003){
                     var isAccepted = confirm(response.message);
                     if(isAccepted == true){
-                        var a = $("#redirectUri").val();/*
-                        var b = $(request.getContent().getAttribute("redirectUri")).val();
-                        console.log(a);
-                        console.log(b);*/
-                        window.open("https://github.com/login/oauth/authorize?client_id=1cac5f8fd3854fe3fd1a&redirect_uri="+a+"/callback&scope=user&state=1");
+                        var a = $("#redirect").val();
+                        window.open("https://github.com/login/oauth/authorize?client_id=1cac5f8fd3854fe3fd1a&redirect_uri="+a+"&scope=user&state=1");
                         localStorage.setItem("isAccepted", true);
+                        window.location.reload();
                     }
                 }else{
 
