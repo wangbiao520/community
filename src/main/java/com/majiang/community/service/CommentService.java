@@ -90,6 +90,9 @@ public class CommentService {
     }
 
     private void insertInform(Comment comment, User commentUser, Question dbQuestion,Long id,Long userId, InformStatusEnum unread, InformTypeEnum reply) {
+        if(comment.getCommentator() == userId){
+            return;
+        }
         Inform inform = new Inform();
         inform.setInformId(id);
         inform.setInformUserId(userId);

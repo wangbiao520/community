@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>码匠社区</title>
+    <title>蜗牛社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
@@ -19,6 +19,8 @@
     <p th:text="${message}">服务器出错了</p>
     <p><a class="btn btn-primary btn-lg" href="/" role="button">返回主页</a></p>
 </div>
+
+<div th:insert="footer.html :: foot"></div>
 
 </body>
 </html>

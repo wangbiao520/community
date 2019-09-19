@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>码匠社区</title>
+    <title>蜗牛社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
@@ -139,12 +139,12 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object img-circle" th:src="${question.user.avatarUrl}">
+                                <img class="media-object img-circle" th:src="${session.user != null ? session.user.avatarUrl : '\images\default.jpg'}">
                             </a>
                         </div>
                         <div class="media-body">
                             <h5 class="media-heading">
-                                <span th:text="${question.user.name}">
+                                <span th:text="${session.user != null ? session.user.name : '匿名用户'}">
 
                                 </span>
                             </h5>

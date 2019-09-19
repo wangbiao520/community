@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>码匠社区</title>
+    <title>蜗牛社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
@@ -57,25 +57,25 @@
                 <ul class="pagination">
 
                     <li th:if="${!page.showFirstPage}">
-                        <a href="/?page=1" aria-label="Previous">
+                        <a th:href="@{/(page=1,search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="${!page.showLastPage}">
-                        <a th:href="@{/(page=${page.page -1})}" aria-label="Previous">
+                        <a th:href="@{/(page=${page.page -1},search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
-                    <li th:each="pages : ${page.pages}" th:classappend="${page.page == pages} ? 'active':''"><a th:href="@{/(page=${pages})}" th:text="${pages}"></a></li>
+                    <li th:each="pages : ${page.pages}" th:classappend="${page.page == pages} ? 'active':''"><a th:href="@{/(page=${pages},search=${search})}" th:text="${pages}"></a></li>
 
                     <li th:if="${!page.showNextPage}">
-                        <a th:href="@{/(page=${page.page +1})}"  aria-label="Previous">
+                        <a th:href="@{/(page=${page.page +1},search=${search})}"  aria-label="Previous">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li th:if="${!page.showEndPage}">
-                        <a th:href="@{/(page=${page.endPage})}" aria-label="Previous">
+                        <a th:href="@{/(page=${page.endPage},search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
@@ -92,6 +92,9 @@
         </div>
     </div>
 </div>
+
+
+<div th:insert="footer.html :: foot"></div>
 
 </body>
 </html>

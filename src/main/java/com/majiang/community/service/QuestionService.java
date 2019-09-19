@@ -2,6 +2,7 @@ package com.majiang.community.service;
 
 import com.majiang.community.dto.PageQuestionDTO;
 import com.majiang.community.dto.QuestionDTO;
+import com.majiang.community.dto.QuestionSearchDTO;
 import com.majiang.community.exception.CustomizeErrorCode;
 import com.majiang.community.exception.CustomizeException;
 import com.majiang.community.mapper.QuestionExtMapper;
@@ -17,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -31,23 +34,39 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
-    public PageQuestionDTO findList(Integer page, Integer size) {
-        if(page <= 0){
-            page =1;
+    public PageQuestionDTO findList(Integer page, Integer size,String search) {
+
+        if(StringUtils.isNotBlank(search)){
+            String[] split = search.split(" ");
+            search = Arrays.stream(split).collect(Collectors.joining("|"));
         }
+
         QuestionExample questionExample = new QuestionExample();
-        Long countL = questionMapper.countByExample(questionExample);
-        int count = countL.intValue();
+        QuestionSearchDTO questionSearchDTO = new QuestionSearchDTO();
+        questionSearchDTO.setSearch(search);
+        Integer count = questionExtMapper.countBySearch(questionSearchDTO);
+        //int count = countL.intValue();
+
+        Integer firstPage = 0 ;
         Integer endPage = count % size ==0 ? count / size:count / size + 1;
         if(page > endPage){
             page = endPage;
         }
-        Integer firstPage = page * size - size;
+        if(page <= 0){
+            page =1;
+        }
+        firstPage = page * size - size;
+
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         QuestionExample questionExample1 = new QuestionExample();
         questionExample1.setOrderByClause("gmt_create desc");
+
         RowBounds rowBounds = new RowBounds(firstPage,size);
-        List<Question> questionList = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample1,rowBounds );
+        questionSearchDTO.setPage(firstPage);
+        questionSearchDTO.setSize(size);
+
+        List<Question> questionList = questionExtMapper.listBySearch(questionSearchDTO);
+
         PageQuestionDTO pageQuestionDTO = new PageQuestionDTO();
         pageQuestionDTO.setPage(page,size,count);
 
