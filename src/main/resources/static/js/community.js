@@ -24,7 +24,11 @@ function comment2target(targetId,type,content) {
                 if(response.code == 2003){
                     var isAccepted = confirm(response.message);
                     if(isAccepted == true){
-                        window.open("https://github.com/login/oauth/authorize?client_id=1cac5f8fd3854fe3fd1a&redirect_uri=http://localhost:8080/callback&scope=user&state=1")
+                        var a = $("#redirectUri").val();/*
+                        var b = $(request.getContent().getAttribute("redirectUri")).val();
+                        console.log(a);
+                        console.log(b);*/
+                        window.open("https://github.com/login/oauth/authorize?client_id=1cac5f8fd3854fe3fd1a&redirect_uri="+a+"/callback&scope=user&state=1");
                         localStorage.setItem("isAccepted", true);
                     }
                 }else{
