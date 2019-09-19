@@ -37,7 +37,11 @@ public class InformService {
         informExample.createCriteria().andInformUserIdEqualTo(id);
         Long countL = informMapper.countByExample(informExample);
         if(countL == 0){
-            return new PageQuestionDTO();
+            PageQuestionDTO pageQuestionDTO = new PageQuestionDTO();
+            pageQuestionDTO.setPage(0);
+            pageQuestionDTO.setEndPage(0);
+            pageQuestionDTO.setPages(new ArrayList<>());
+            return pageQuestionDTO;
         }
         int count = countL.intValue();
         Integer endPage = count % size ==0 ? count / size:count / size + 1;
