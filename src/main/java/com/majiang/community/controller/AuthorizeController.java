@@ -5,6 +5,7 @@ import com.majiang.community.dto.GitHubUser;
 import com.majiang.community.model.User;
 import com.majiang.community.provider.GitHubProvider;
 import com.majiang.community.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
+@Slf4j
 public class AuthorizeController {
 
     @Autowired
@@ -63,6 +65,7 @@ public class AuthorizeController {
             userService.createOrUpdate(user);
             return "redirect:";
         }else{
+            log.error("login failure:" + gitHubUser);
             return "redirect:";
         }
 
