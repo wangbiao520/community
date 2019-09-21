@@ -36,7 +36,6 @@ public class CommentService {
     @Autowired
     private InformMapper informMapper;
 
-    @Transactional
     public void insert(Comment comment,User commentUser) {
 
         if(comment.getParentId() == null || comment.getParentId() == 0){
