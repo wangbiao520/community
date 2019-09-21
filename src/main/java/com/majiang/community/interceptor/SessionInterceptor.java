@@ -39,6 +39,9 @@ public class SessionInterceptor implements HandlerInterceptor {
                     UserExample userExample = new UserExample();
                     userExample.createCriteria().andTokenEqualTo(cookie.getValue());
                     List<User> users = userMapper.selectByExample(userExample);
+                    if(users == null){
+                        break;
+                    }
                     user = users.get(0);
                     if(user !=null){
                         HttpSession session = request.getSession();
